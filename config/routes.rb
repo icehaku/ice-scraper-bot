@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root to: "scraper#index"
 
   get '/steam_free_to_get', to: 'scraper#steam_free_to_get'
+  get '/epic_free_to_get', to: 'scraper#epic_free_to_get'
+  get '/epic_next_week', to: 'scraper#epic_next_week'
 end

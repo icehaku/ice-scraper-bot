@@ -15,6 +15,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # NEW
 gem 'nokogiri'
+gem 'watir-rails'
+gem 'headless'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
