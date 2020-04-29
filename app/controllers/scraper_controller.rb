@@ -31,7 +31,7 @@ class ScraperController < ApplicationController
 
     frees = []
     browser.spans().each do |span|
-      frees << span if ['GRÁTIS', 'EM BREVE'].include?(span.text)
+      frees << span if span.text.include?("GRÁTIS") or span.text.include?("BREVE")
     end
 
     @games = []
