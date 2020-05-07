@@ -31,12 +31,13 @@ class ScraperController < ApplicationController
 
     frees = []
     browser.spans().each do |span|
-      frees << span if ['GRÁTIS', 'EM BREVE'].include?(span.text)
+      frees << span if check_if_span_is_game(span.text)
     end
 
     @games = []
     frees.each do |free|
-      element = free.parent.parent
+      element = free.parent.parent # changed 7-5-2020
+      element = free.parent.parent.parent
       game_name   = element.span("data-testid": "offer-title-info-title").text
       game_image  = element.imgs().first.src
       game_link   = element.parent.parent.attributes[:href]
@@ -47,6 +48,13 @@ class ScraperController < ApplicationController
     end
 
     base_error if @games.empty?
+  end
+
+  def check_if_span_is_game(span_text)
+    return true if span_text.include?('GRÁTIS')
+    return true if span_text.include?('BREVE')
+    return true if span_text.include?('REQUER')
+    # return true if span_text.include?('JOGO')
   end
 
   def base_error
